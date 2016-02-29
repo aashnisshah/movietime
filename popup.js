@@ -1,6 +1,7 @@
 var settings = {
 	api_key: '',
-	base_url: 'https://api.themoviedb.org/3/movie/'
+	base_url: 'https://api.themoviedb.org/3/movie/',
+	image_base_url: 'https://image.tmdb.org/t/p/w500'
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		// display an error message
 	} else {
 		// display movie information
-		console.log('selected movie: ', selected);
+		update_information(selected);
 	}
 });
 
@@ -46,5 +47,20 @@ function select_random_movie(movies) {
 	selected_movie_num = Math.floor(Math.random() * (num_movies + 1));
 
 	return movies.results[selected_movie_num];
+
+}
+
+function update_information(movie) {
+	var movieName = document.getElementById('movie-name');
+	movieName.innerText = movie.title;
+
+	var movieDescription = document.getElementById('movie-description');
+	movieDescription.innerText = movie.overview;
+
+	var movieRating = document.getElementById('movie-rating');
+	movieRating.innerText = 'Vote Average: ' + movie.vote_average;
+
+	var movieImage = document.getElementById('movie-image');
+	movieImage.src = settings.image_base_url + movie.poster_path;
 
 }
