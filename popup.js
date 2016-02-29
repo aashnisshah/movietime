@@ -76,6 +76,8 @@ function update_information(movie) {
 	console.log(youtube_trailer);
 
 	var movieImage = document.getElementById('youtube-trailer');
-	movieImage.src = settings.youtube_embed_base_url + youtube_trailer.results[0].key;
+	movieImage.src = youtube_trailer.results[0] ? 
+						settings.youtube_embed_base_url + youtube_trailer.results[0].key : 
+						'';
 
 }
